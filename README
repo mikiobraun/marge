@@ -1,0 +1,9 @@
+Marge
+=====
+
+Yet another machine learning library.
+
+Nothing to see here, just a minimal collection of stuff I put together at some point.
+Probably the best part is that I interface to the (Java) version of libsvm.
+
+(c) 2015 by Mikio L. Braun, see LICENSE
