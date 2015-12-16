@@ -1,3 +1,5 @@
+package marge.liblinear
+
 import marge.data.SparseVector
 import marge.{Predictor, Learner}
 import de.bwaldvogel.liblinear._

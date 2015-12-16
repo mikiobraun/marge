@@ -6,7 +6,6 @@ import java.io._
 import collection.mutable.ArrayBuffer
 
 /**
- * Twimpact
  *
  * User: mikio
  * Date: 4/7/11

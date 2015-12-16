@@ -3,7 +3,6 @@ package marge.map
 import marge.data.SparseVector
 
 /**
- * Twimpact
  *
  * User: mikio
  * Date: 4/14/11

@@ -4,7 +4,6 @@ import collection.mutable.HashMap
 import java.io.{ObjectInputStream, ObjectOutputStream}
 
 /**
- * Twimpact
  *
  * User: mikio
  * Date: 4/7/11

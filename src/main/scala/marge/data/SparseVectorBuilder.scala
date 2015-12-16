@@ -3,7 +3,6 @@ package marge.data
 import collection.mutable.{ArrayBuffer, Builder}
 
 /**
- * Twimpact
  *
  * User: mikio
  * Date: 4/7/11

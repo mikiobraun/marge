@@ -4,7 +4,6 @@ import java.io.{FileOutputStream, BufferedOutputStream, ObjectOutputStream}
 
 
 /**
- * Twimpact
  *
  * User: mikio
  * Date: 4/7/11

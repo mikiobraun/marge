@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2012 TWIMPACT UG (haftungsbeschraenkt). All rights reserved.
- */
-
 package marge.la
 
 import org.junit._

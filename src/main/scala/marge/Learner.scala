@@ -3,7 +3,6 @@ package marge
 import map.OutputMap
 
 /**
- * Twimpact
  *
  * User: mikio
  * Date: 4/7/11

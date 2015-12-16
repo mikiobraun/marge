@@ -4,7 +4,6 @@ import collection.mutable.HashMap
 import marge.data.SparseVector
 
 /**
- * Twimpact
  *
  * User: mikio
  * Date: 4/7/11

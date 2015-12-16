@@ -5,7 +5,6 @@ import marge._
 import java.io.{ObjectInputStream, ObjectOutputStream}
 
 /**
- * Twimpact
  *
  * User: mikio
  * Date: 4/12/11

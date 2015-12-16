@@ -1,7 +1,6 @@
 package marge.map
 
 /**
- * Twimpact
  *
  * User: mikio
  * Date: 4/7/11

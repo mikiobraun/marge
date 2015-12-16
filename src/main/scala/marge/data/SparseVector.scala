@@ -3,7 +3,6 @@ package marge.data
 import java.util.Arrays
 
 /**
- * Twimpact
  *
  * User: mikio
  * Date: 4/7/11

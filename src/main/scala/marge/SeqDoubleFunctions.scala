@@ -1,7 +1,6 @@
 package marge
 
 /**
- * Twimpact
  *
  * User: mikio
  * Date: 4/11/11

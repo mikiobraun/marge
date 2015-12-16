@@ -4,7 +4,6 @@ import collection.mutable.HashMap
 import marge._
 
 /**
- * Twimpact
  *
  * User: mikio
  * Date: 4/14/11

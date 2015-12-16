@@ -3,7 +3,6 @@ package marge
 import marge.SeqDoubleFunctions.mean
 
 /**
- * Twimpact
  *
  * User: mikio
  * Date: 4/8/11

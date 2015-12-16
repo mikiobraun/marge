@@ -1,11 +1,6 @@
-/*
- * Copyright (c) 2011 TWIMPACT UG (haftungsbeschraenkt). All rights reserved.
- */
-
 package marge.map
 
 /**
- * Twimpact
  *
  * User: mikio
  * Date: 4/14/11
