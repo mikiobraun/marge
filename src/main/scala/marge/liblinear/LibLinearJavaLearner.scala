@@ -35,9 +35,12 @@ class LibLinearJavaLearner(c: Double) extends Learner[SparseVector, Double] {
 
 
   def train(ds: Seq[(SparseVector, Double)]): Predictor[SparseVector, Double] = {
+    println("Building problem")
     val problem = buildProblem(ds)
     val param = new Parameter(solver, c, 1e-3)
     //Linear.disableDebugOutput()
+    Linear.enableDebugOutput()
+    println("training")
     new LibLinearJavaPredictor(Linear.train(problem, param))
   }
 }

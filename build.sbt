@@ -13,4 +13,4 @@ libraryDependencies += "org.apache.commons" % "commons-math" % "2.2"
 
 libraryDependencies += "junit" % "junit" % "4.12" % Test
 
-publishTo := Some(Resolver.file("file",  new File(Path.userHome.absolutePath+"/.m2/repository")))
+//publishTo := Some(Resolver.file("file",  new File(Path.userHome.absolutePath+"/.m2/repository")))

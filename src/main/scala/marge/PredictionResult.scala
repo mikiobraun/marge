@@ -21,7 +21,7 @@ class PredictionResult[Y](trueYSeq: Seq[Y], predictedYSeq: Seq[Y])(implicit mani
   }
 
   val size = trueY.length
-  val indices = (0 until trueY.length).toArray
+  val indices = trueY.indices.toArray
   val classes: Set[Y] = trueY.toSet ++ predictedY.toSet
 
   def meanLoss(lossFct: (Y,Y) => Double): Double =

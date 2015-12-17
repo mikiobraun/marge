@@ -62,8 +62,8 @@ class LibLinearLearner(c: Double, trainType: Int = 1) extends Learner[SparseVect
 
   def runLibLinear(file: File): File = {
     val modelTemp = File.createTempFile("liblinear", "model")
-    val cmdline = "%s/train -s %d -q -c %f %s %s"
-        .format(LIBLINEAR_DIR, trainType, c, file.getAbsolutePath, modelTemp.getAbsolutePath)
+    val cmdline = "train -s %d -q -c %f %s %s"
+        .format(trainType, c, file.getAbsolutePath, modelTemp.getAbsolutePath)
     val p = Runtime.getRuntime.exec(cmdline)
     val printerThread = new ProcessPrinterThread(p.getInputStream)
     printerThread.start()
@@ -84,17 +84,19 @@ class LibLinearLearner(c: Double, trainType: Int = 1) extends Learner[SparseVect
 }
 
 class LibLinearPredictor(val weights: Array[Double], val bias: Double) extends Predictor[SparseVector, Double] {
-  def apply(x: SparseVector): Double = x * weights
+  def apply(x: SparseVector): Double = x * weights + bias
 
-  // bias
+  override def toString = "LibLinearPredictor(" + weights.toSeq + ", bias=" + bias + ")"
 }
 
 object LibLinearPredictor {
-  def parseModelFile(file: File): LibLinearPredictor = {
+  def parseModelFile(file: File, label:Int= -1): LibLinearPredictor = {
     val in = new BufferedReader(new FileReader(file))
     val wb = new ArrayBuffer[Double]
     var bias = 0.0
     var inHeader = true
+    var labelMap = Map[Int,Int]()
+    var labelIndex = label
     while (in.ready) {
       val line = in.readLine()
       if (inHeader) {
@@ -102,9 +104,18 @@ object LibLinearPredictor {
           bias = line.substring(5).toInt
         } else if (line == "w") {
           inHeader = false
+        } else if (line startsWith "label ") {
+          val labels = line.substring(6).split(" ").map(_.toInt)
+          labelMap = labels.zipWithIndex.toMap
+          labelIndex = if (label == -1)
+            labels.head
+          else
+            labelMap(label)
         }
       } else {
-        wb.append(line.toDouble)
+        val fields = line.split(" ")
+        //println(fields.toList)
+        wb.append(fields(labelIndex).toDouble)
       }
     }
 

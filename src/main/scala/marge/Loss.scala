@@ -29,14 +29,14 @@ object Loss {
   def zeroOne[Y] = new Loss[Y] {
     def apply(y1: Seq[Y], y2: Seq[Y]): Double = {
       checkLabelLengths(y1, y2)
-      y1.zip(y2).filter(y => y._1 != y._2).length.toDouble / y1.length
+      y1.zip(y2).count(y => y._1 != y._2).toDouble / y1.length
     }
   }
 
   def zeroOneSignum = new Loss[Double] {
     def apply(y1: Seq[Double], y2: Seq[Double]): Double = {
       checkLabelLengths(y1, y2)
-      y1.zip(y2).filter(y => sign(y._1) != sign(y._2)).length.toDouble / y1.length
+      y1.zip(y2).count(y => sign(y._1) != sign(y._2)).toDouble / y1.length
     }
   }
 
@@ -68,7 +68,7 @@ object Loss {
    * @return
    */
   def mean(y1: Seq[Double], y2: Seq[Double])(fct: (Double, Double) => Double): Double = {
-    sum(y1, y2)(fct).toDouble / y1.length
+    sum(y1, y2)(fct) / y1.length
   }
 
   /**
