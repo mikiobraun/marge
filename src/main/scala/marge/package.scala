@@ -1,6 +1,7 @@
 import marge.data.Matrix
 import math.pow
 import java.util.Random
+import scala.language.implicitConversions
 
 package object marge {
   def linspace(a: Double, b: Double, n: Int): Seq[Double] =
@@ -9,7 +10,7 @@ package object marge {
   def logspace(a: Double, b: Double, n: Int): Seq[Double] =
     linspace(a, b, n).map(x => pow(10, x))
 
-  implicit def seq2DataSet[X, Y](seq: Seq[(X, Y)]) = new DataSetAdditions[X, Y](seq)
+  implicit def seq2DataSet[X, Y](seq: Seq[(X, Y)]): DataSetAdditions[X, Y] = new DataSetAdditions[X, Y](seq)
 
   /**
    * Create a random permutation of the numbers 0, ..., size - 1.

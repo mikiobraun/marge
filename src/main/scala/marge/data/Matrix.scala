@@ -1,5 +1,7 @@
 package marge.data
 
+import scala.language.implicitConversions
+
 /**
  *
  * User: mikio
