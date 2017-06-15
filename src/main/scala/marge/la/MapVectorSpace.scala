@@ -2,7 +2,7 @@ package marge.la
 
 
 class MapVectorSpace[E] extends VectorSpace[E] {
-  def make(s: Iterable[E]) = {
+  def make(s: Iterable[E]): MapVector[E] = {
     var d = Map[E, Double]()
     for (e <- s) {
       d += e -> (d.getOrElse(e, 0.0) + 1)
@@ -14,7 +14,7 @@ class MapVectorSpace[E] extends VectorSpace[E] {
 
   def make[S](s: Map[E, S])(implicit num: Numeric[S]) = new MapVector(this, s.map(es => (es._1, num.toDouble(es._2))))
 
-  def make[S](s: Iterable[(E, S)])(implicit num: Numeric[S]) = {
+  def make[S](s: Iterable[(E, S)])(implicit num: Numeric[S]): MapVector[E] = {
     var d = Map[E, Double]()
     for ((e, v) <- s) {
       d += e -> (d.getOrElse(e, 0.0) + num.toDouble(v))

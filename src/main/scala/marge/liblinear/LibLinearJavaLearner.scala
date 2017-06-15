@@ -60,10 +60,8 @@ object LibLinearJava {
 }
 
 class LibLinearJavaPredictor(model: Model) extends Predictor[SparseVector, Double] {
-  private val labels = model.getLabels
 
   def apply(x: SparseVector): Double = {
-    val out = new Array[Double](2)
     //Linear.predictValues(model, LibLinearJava.sparseToFeatures(x), out)
     //println(out.toList)
     //labels(0) * out(0)

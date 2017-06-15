@@ -1,6 +1,7 @@
 package marge.data
 
-import collection.mutable.{ArrayBuffer, Builder}
+import scala.collection.mutable
+import scala.collection.mutable.ArrayBuffer
 
 /**
  *
@@ -9,7 +10,7 @@ import collection.mutable.{ArrayBuffer, Builder}
  * Time: 3:25 PM
  */
 
-class SparseVectorBuilder extends Builder[(Int, Double), SparseVector] {
+class SparseVectorBuilder extends mutable.Builder[(Int, Double), SparseVector] {
   val indices = new ArrayBuffer[Int]
   val values = new ArrayBuffer[Double]
 

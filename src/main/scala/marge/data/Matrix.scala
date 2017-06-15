@@ -25,16 +25,16 @@ class Matrix[T](val rows: Int, val cols: Int)(implicit m: Manifest[T]) {
 
   def apply(i: Int): T = data(i)
 
-  override def toString = format("%10s", "  ", "\n")
+  override def toString: String = format("%10s", "  ", "\n")
 
-  def format(fmt: String, sep: String, newline: String) =
+  def format(fmt: String, sep: String, newline: String): String =
     (0 until rows).map { i =>
       (0 until cols).map { j =>
         fmt.format(this(i,j))
       }.mkString(sep)
     }.mkString(newline)
 
-  override def equals(other: Any) = other match {
+  override def equals(other: Any): Boolean = other match {
     case that: Matrix[_] => this.rows == that.rows && this.cols == that.cols && this.data.sameElements(that.data)
     case _ => false
   }
@@ -44,7 +44,7 @@ class Matrix[T](val rows: Int, val cols: Int)(implicit m: Manifest[T]) {
   var rowNames: Seq[String] = Seq()
   var colNames: Seq[String] = Seq()
 
-  def findRow(s: String) = {
+  def findRow(s: String): Int = {
     val i = rowNames.indexOf(s)
     if (i == -1)
       throw new NoSuchElementException("No row with name '%s'".format(s))
@@ -52,7 +52,7 @@ class Matrix[T](val rows: Int, val cols: Int)(implicit m: Manifest[T]) {
       i
   }
 
-  def findCol(s: String) = {
+  def findCol(s: String): Int = {
     val j = colNames.indexOf(s)
     if (j == -1)
       throw new NoSuchElementException("No column with name '%s'".format(s))
@@ -73,22 +73,22 @@ class Matrix[T](val rows: Int, val cols: Int)(implicit m: Manifest[T]) {
 }
 
 class Row[T](val data: Seq[T]) {
-  def length = data.length
+  def length: Int = data.length
 }
 
 object Row {
   def apply[T](data: T*) = new Row(data)
 
-  implicit def tuple1ToRow[T](t: Tuple1[T]) = new Row(Seq(t._1))
-  implicit def tuple2ToRow[T](t: (T, T)) = new Row(Seq(t._1,t._2))
-  implicit def tuple3ToRow[T](t: (T, T, T)) = new Row(Seq(t._1,t._2,t._3))
-  implicit def tuple4ToRow[T](t: (T, T, T, T)) = new Row(Seq(t._1,t._2,t._3,t._4))
-  implicit def tuple5ToRow[T](t: (T, T, T, T, T)) = new Row(Seq(t._1,t._2,t._3,t._4,t._5))
-  implicit def tuple6ToRow[T](t: (T, T, T, T, T, T)) = new Row(Seq(t._1,t._2,t._3,t._4,t._6))
-  implicit def tuple7ToRow[T](t: (T, T, T, T, T, T, T)) = new Row(Seq(t._1,t._2,t._3,t._4,t._5,t._6,t._7))
-  implicit def tuple8ToRow[T](t: (T, T, T, T, T, T, T, T)) = new Row(Seq(t._1,t._2,t._3,t._4,t._5,t._6,t._7,t._8))
-  implicit def tuple9ToRow[T](t: (T, T, T, T, T, T, T, T, T)) = new Row(Seq(t._1,t._2,t._3,t._4,t._5,t._6,t._7,t._8,t._9))
-  implicit def tuple10ToRow[T](t: Tuple10[T,T,T,T,T,T,T,T,T,T]) = new Row(Seq(t._1,t._2,t._3,t._4,t._5,t._6,t._7,t._8,t._9,t._10))
+  implicit def tuple1ToRow[T](t: Tuple1[T]): Row[T] = new Row(Seq(t._1))
+  implicit def tuple2ToRow[T](t: (T, T)): Row[T] = new Row(Seq(t._1,t._2))
+  implicit def tuple3ToRow[T](t: (T, T, T)): Row[T] = new Row(Seq(t._1,t._2,t._3))
+  implicit def tuple4ToRow[T](t: (T, T, T, T)): Row[T] = new Row(Seq(t._1,t._2,t._3,t._4))
+  implicit def tuple5ToRow[T](t: (T, T, T, T, T)): Row[T] = new Row(Seq(t._1,t._2,t._3,t._4,t._5))
+  implicit def tuple6ToRow[T](t: (T, T, T, T, T, T)): Row[T] = new Row(Seq(t._1,t._2,t._3,t._4,t._6))
+  implicit def tuple7ToRow[T](t: (T, T, T, T, T, T, T)): Row[T] = new Row(Seq(t._1,t._2,t._3,t._4,t._5,t._6,t._7))
+  implicit def tuple8ToRow[T](t: (T, T, T, T, T, T, T, T)): Row[T] = new Row(Seq(t._1,t._2,t._3,t._4,t._5,t._6,t._7,t._8))
+  implicit def tuple9ToRow[T](t: (T, T, T, T, T, T, T, T, T)): Row[T] = new Row(Seq(t._1,t._2,t._3,t._4,t._5,t._6,t._7,t._8,t._9))
+  implicit def tuple10ToRow[T](t: Tuple10[T,T,T,T,T,T,T,T,T,T]): Row[T] = new Row(Seq(t._1,t._2,t._3,t._4,t._5,t._6,t._7,t._8,t._9,t._10))
 }
 
 object Matrix {

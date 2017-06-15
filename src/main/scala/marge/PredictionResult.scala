@@ -20,8 +20,8 @@ class PredictionResult[Y](trueYSeq: Seq[Y], predictedYSeq: Seq[Y])(implicit mani
     throw new IllegalArgumentException("true and predicted labels must have same lengths!")
   }
 
-  val size = trueY.length
-  val indices = trueY.indices.toArray
+  val size: Int = trueY.length
+  val indices: Array[Int] = trueY.indices.toArray
   val classes: Set[Y] = trueY.toSet ++ predictedY.toSet
 
   def meanLoss(lossFct: (Y,Y) => Double): Double =

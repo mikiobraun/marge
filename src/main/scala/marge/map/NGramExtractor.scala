@@ -3,6 +3,8 @@ package marge.map
 import collection.mutable.HashMap
 import marge.data.SparseVector
 
+import scala.collection.mutable
+
 /**
  *
  * User: mikio
@@ -12,7 +14,7 @@ import marge.data.SparseVector
 
 class NGramExtractor(n: Int) extends ((String) => Map[String, Int]) {
   def apply(s: String): Map[String, Int] = {
-    val counts = new HashMap[String, Int]
+    val counts = new mutable.HashMap[String, Int]
     for (k <- n to n) {
       for (i <- 0 until s.length - k) {
         val sub = s.substring(i, i + k)

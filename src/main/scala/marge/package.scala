@@ -49,7 +49,7 @@ package object marge {
    * See Algorithm S, D. E. Knuth, The Art of Computer Programming, Vol. 2, p.142.
    */
   def randomSubset(k: Int, n: Int): Array[Int] = {
-    assert((0 < k && k <= n))
+    assert(0 < k && k <= n)
     val r = new Random
     var t = 0
     var m = 0
@@ -87,9 +87,9 @@ package object marge {
     (r, ys.map(kv => (kv._2, kv._1)))
   }
 
-  def prod(a: Seq[Double]) = a.foldLeft(1.0)((p, x) => p * x)
+  def prod(a: Seq[Double]): Double = a.foldLeft(1.0)((p, x) => p * x)
 
-  def sum(a: Seq[Double]) = a.foldLeft(0.0)((s, x) => s + x)
+  def sum(a: Seq[Double]): Double = a.foldLeft(0.0)((s, x) => s + x)
 
   def rand(n: Int): Array[Double] = {
     val r = new Array[Double](n)

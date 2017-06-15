@@ -13,9 +13,9 @@ import scala.math.round
  */
 
 class ClassToIndexMap[Y](classes: Set[Y])(implicit ord: Ordering[Y]) extends OutputMap[Y, Double] {
-  val cl = classes.toSeq.sorted
+  val cl: Seq[Y] = classes.toSeq.sorted
 
-  val classToIndex = cl.zipWithIndex.toMap
+  val classToIndex: Map[Y, Int] = cl.zipWithIndex.toMap
 
   def indexToClass(z: Double): Option[Y] = {
     val a = round(z).toInt

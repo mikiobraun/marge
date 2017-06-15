@@ -10,9 +10,9 @@ import marge.SeqDoubleFunctions.mean
  */
 
 class CrossValidation[X, Y](k: Int, data: Seq[(X, Y)]) {
-  val n = data.length
-  val p = CrossValidation.partition(k, n)
-  val all = 0 until n
+  val n: Int = data.length
+  val p: Seq[Seq[Int]] = CrossValidation.partition(k, n)
+  val all: Range = 0 until n
 
   def evaluate[E](fct: (Seq[(X, Y)], Seq[(X, Y)]) => E): Seq[E] = {
     (0 until k).map {

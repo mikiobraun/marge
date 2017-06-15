@@ -1,6 +1,9 @@
 package marge.data
 
+import java.util
 import java.util.Arrays
+
+import scala.collection.mutable
 
 /**
  *
@@ -13,7 +16,7 @@ class SparseVector(indices: Array[Int], val data: Array[Double]) extends Indexed
   assert(indices.length == data.length)
 
   def apply(i: Int): Double = {
-    val j = Arrays.binarySearch(indices, i)
+    val j = util.Arrays.binarySearch(indices, i)
     if (j < 0) 0.0 else data(j)
   }
 
@@ -21,16 +24,16 @@ class SparseVector(indices: Array[Int], val data: Array[Double]) extends Indexed
 
   def indexAt(i: Int): Int = indices(i)
 
-  def length = if (indices.isEmpty) 0 else indices.last + 1
+  def length: Int = if (indices.isEmpty) 0 else indices.last + 1
 
-  def numEntries = data.length
+  def numEntries: Int = data.length
 
-  def keys = indices
+  def keys: mutable.WrappedArray[Int] = indices
 
-  def sameElements(that: SparseVector) =
-    keys.sameElements(keys) && data.sameElements(that.data)
+  def sameElements(that: SparseVector): Boolean =
+    keys.equals(keys) && data.sameElements(that.data)
 
-  def support = indices
+  def support: Array[Int] = indices
 
   def *(other: Array[Double]): Double = {
     var i = 0
@@ -79,13 +82,13 @@ class SparseVector(indices: Array[Int], val data: Array[Double]) extends Indexed
 
   def map(fct: (Double) => Double): SparseVector = new SparseVector(indices, data.map(fct))
 
-  def toMap = indices.zip(data).toMap
+  def toMap: Map[Int, Double] = indices.zip(data).toMap
 
-  def toSeq = indices.zip(data)
+  def toSeq: Array[(Int, Double)] = indices.zip(data)
 
-  override def toString =
+  override def toString: String =
     "SparseVector(" +
-      (0 until keys.length).map(i => "%d -> %f".format(keys(i), data(i))).mkString(", ") + ")"
+      keys.indices.map(i => "%d -> %f".format(keys(i), data(i))).mkString(", ") + ")"
 
   def sum: Double = data.sum
 

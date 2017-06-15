@@ -3,6 +3,8 @@ package marge.map
 import collection.mutable.HashMap
 import marge._
 
+import scala.collection.mutable
+
 /**
  *
  * User: mikio
@@ -11,8 +13,8 @@ import marge._
  */
 
 class MostFrequentTokens[X, Z](n: Int, base: Seq[X], tokenizer: (X) => Seq[Z]) extends ((X) => Map[Z, Int]) {
-  def findTopTokens() = {
-    val h = new HashMap[Z, Int]
+  def findTopTokens(): Map[Z, Int] = {
+    val h = new mutable.HashMap[Z, Int]
 
     def update(z: Z) {
       val count = h.getOrElse(z, 0)
@@ -20,13 +22,13 @@ class MostFrequentTokens[X, Z](n: Int, base: Seq[X], tokenizer: (X) => Seq[Z]) e
     }
 
     for (x <- base) {
-      tokenizer(x).foreach(update _)
+      tokenizer(x).foreach(update)
     }
 
     h.toList.sortBy(kv => -kv._2).take(n).toMap
   }
 
-  val features = findTopTokens()
+  val features: Map[Z, Int] = findTopTokens()
 
   def apply(x: X): Map[Z, Int] = hist(tokenizer(x).filter(z => features.contains(z)))
 }

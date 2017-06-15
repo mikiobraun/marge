@@ -9,7 +9,7 @@ trait VectorSpace[E] {
 
   def make[S](s: Iterable[(E, S)])(implicit num: Numeric[S]): Vector[E]
 
-  def zero = make(Seq[E]())
+  def zero: Vector[E] = make(Seq[E]())
 }
 
 object VectorSpace {

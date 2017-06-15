@@ -3,6 +3,8 @@ package marge.map
 import collection.mutable.HashMap
 import java.io.{ObjectInputStream, ObjectOutputStream}
 
+import scala.collection.mutable
+
 /**
  *
  * User: mikio
@@ -15,7 +17,7 @@ import java.io.{ObjectInputStream, ObjectOutputStream}
  */
 
 class KeyDictionary[S] {
-  private val keys = new HashMap[S, Int]
+  private val keys = new mutable.HashMap[S, Int]
   private var last = 0
 
   def getKey(s: S): Int = keys.getOrElse(s, {
@@ -33,7 +35,7 @@ class KeyDictionary[S] {
 
   def load(in: ObjectInputStream) {
     val count = in.readInt()
-    for (i <- 1 to count) {
+    for (_ <- 1 to count) {
       val k: S = in.readObject().asInstanceOf[S]
       val v = in.readInt()
       keys(k) = v

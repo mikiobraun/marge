@@ -34,7 +34,7 @@ class OneVsRestLearner[X, Y](base: Learner[X, Double], threshold: Double, defaul
 }
 
 class OneVsRestPredictor[X, Y](val classes: Seq[Y], val predictors: Seq[Predictor[X, Double]], val threshold: Double, val default: Y) extends Predictor[X, Y] {
-  val indices = 0 until classes.length
+  val indices: Range = classes.indices
 
   def apply(x: X): Y = {
     val scores = predictors.map(_(x))

@@ -9,7 +9,7 @@ class VectorTest {
 
     assertEquals(support, v.support.toSet)
 
-    for (i <- 0 until a.length) {
+    for (i <- a.indices) {
       assertEquals(a(i), v(i), 0.0)
     }
   }

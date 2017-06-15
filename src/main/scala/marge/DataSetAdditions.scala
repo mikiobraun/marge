@@ -27,8 +27,8 @@ class DataSetAdditions[X, Y](examples: Seq[(X, Y)]) {
   }
 
   def subsampleBalancedClasses(itemsPerClass: Int): Seq[(X, Y)] = {
-    classes.toSeq.map(c => filterY(_ == c).subsample(itemsPerClass)).flatten
+    classes.toSeq.flatMap(c => filterY(_ == c).subsample(itemsPerClass))
   }
 
-  def classes = ys.toSet
+  def classes: Set[Y] = ys.toSet
 }

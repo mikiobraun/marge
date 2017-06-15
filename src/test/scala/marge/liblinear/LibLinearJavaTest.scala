@@ -56,7 +56,7 @@ class LibLinearJavaTest {
     val ds = generateData(100)
 
     var firstError = -1.0
-    for (i <- 1 to 10) {
+    for (_ <- 1 to 10) {
       val l = new LibLinearJavaLearner(1.0)
       val m = l.train(ds)
       val error = Loss.zeroOne(ds.ys, m.applyAll(ds.xs))
@@ -72,7 +72,7 @@ class LibLinearJavaTest {
   def generateData(n: Int): Seq[(SparseVector, Double)] = {
     val data = new ArrayBuffer[(SparseVector, Double)]
     val w = new SparseVector(Array(0, 1, 2, 3, 4, 5), marge.randn(6))
-    for (i <- 1 to n) {
+    for (_ <- 1 to n) {
       val x = new SparseVector(Array(0, 1, 2, 3, 4, 5), marge.rand(6))
       data.append((x, scala.math.signum(w * x + scala.util.Random.nextGaussian())))
     }

@@ -50,7 +50,7 @@ trait Vector[E] {
 
   def normalize(p: Double=2.0): Vector[E] = { val n = norm(p); if (n > 0.0) this / norm(p) else this }
 
-  def length = support.size
+  def length: Int = support.size
 
   /**
    * Scalar product
@@ -80,14 +80,13 @@ trait Vector[E] {
 
   /* The usual stuff */
 
-  override def toString =
+  override def toString: String =
     "(" + support.map(e => "%s=%f".format(e, this(e))).mkString(", ") + ")"
 
-  override def equals(a: Any) = a match {
-    case o: Vector[_] => {
+  override def equals(a: Any): Boolean = a match {
+    case o: Vector[_] =>
       val other = o.asInstanceOf[Vector[E]]
       support == other.support && support.forall(e => this(e) == other(e))
-    }
     case _ => false
   }
 }

@@ -15,7 +15,7 @@ import marge._
 class MargeTest {
   @Test
   def testPermute() {
-    val s = (1 to 10)
+    val s = 1 to 10
     println(s.zip(s).permute())
     println(s.zip(s).permute())
   }

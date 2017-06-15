@@ -23,7 +23,7 @@ class ProcessPrinterThread(in: InputStream) extends Thread {
     while (!pleaseStop) {
       var c = in.read()
       while (c != -1) {
-        print(c.toChar);
+        print(c.toChar)
         System.out.flush()
         c = in.read()
       }
@@ -86,7 +86,7 @@ class LibLinearLearner(c: Double, trainType: Int = 1) extends Learner[SparseVect
 class LibLinearPredictor(val weights: Array[Double], val bias: Double) extends Predictor[SparseVector, Double] {
   def apply(x: SparseVector): Double = x * weights + bias
 
-  override def toString = "LibLinearPredictor(" + weights.toSeq + ", bias=" + bias + ")"
+  override def toString: String = "LibLinearPredictor(" + weights.toSeq + ", bias=" + bias + ")"
 }
 
 object LibLinearPredictor {
